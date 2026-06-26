@@ -1,0 +1,13 @@
+{
+  "name": "stegokit",
+  "version": "1.0.0",
+  "description": "Production-ready Steganography Toolkit — hide images & text in carrier images",
+  "private": true,
+  "scripts": {
+    "backend":  "cd backend && npm start",
+    "backend:dev": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "test":     "cd backend && npm test",
+    "install:all": "cd backend && npm install && cd ../cli && npm install && cd ../frontend && npm install"
+  }
+}

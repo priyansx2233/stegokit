@@ -1,0 +1,17 @@
+{
+  "name": "stegokit-cli",
+  "version": "1.0.0",
+  "description": "StegoKit CLI – steganography from the command line",
+  "bin": {
+    "stego": "./index.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^11.1.0",
+    "ora": "^5.4.1"
+  }
+}
