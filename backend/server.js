@@ -11,10 +11,22 @@ const errorHandler = require('./middleware/errorHandler');
 
 const app  = express();
 const PORT = process.env.PORT || 5000;
+const allowedOrigins = [
+  process.env.CORS_ORIGIN,
+  'http://localhost:5173',
+  'https://codeaurelius0.github.io',
+  'https://codeaurelius0.github.io/stegokit',
+].filter(Boolean);
 
 // ── Middleware ────────────────────────────────────────────
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+      return;
+    }
+    callback(new Error('CORS origin not allowed'));
+  },
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
