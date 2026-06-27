@@ -1,5 +1,7 @@
+import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar      from './components/Navbar';
+import Footer      from './components/Footer';
 import Home        from './pages/Home';
 import EncodeImage from './pages/EncodeImage';
 import DecodeImage from './pages/DecodeImage';
@@ -15,24 +17,40 @@ export default function App() {
 
   return (
     <BrowserRouter basename={basename}>
-      <Navbar />
-      <main style={{ minHeight: 'calc(100vh - 56px)' }}>
-        <Routes>
-          <Route path="/"             element={<Home />} />
-          <Route path="/encode-image" element={<EncodeImage />} />
-          <Route path="/decode-image" element={<DecodeImage />} />
-          <Route path="/encode-text"  element={<EncodeText />} />
-          <Route path="/decode-text"  element={<DecodeText />} />
-          <Route path="/visualize"    element={<Visualize />} />
-          <Route path="/docs"         element={<Docs />} />
-          <Route path="*"             element={
-            <div style={{ textAlign: 'center', padding: '80px 24px' }}>
-              <div style={{ fontSize: 48, marginBottom: 16 }}>404</div>
-              <div style={{ color: 'var(--text-secondary)' }}>Page not found.</div>
-            </div>
-          } />
-        </Routes>
-      </main>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        background: 'var(--bg-base)',
+      }}>
+        <Navbar />
+        <main style={{ flex: 1 }}>
+          <Routes>
+            <Route path="/"             element={<Home />} />
+            <Route path="/encode-image" element={<EncodeImage />} />
+            <Route path="/decode-image" element={<DecodeImage />} />
+            <Route path="/encode-text"  element={<EncodeText />} />
+            <Route path="/decode-text"  element={<DecodeText />} />
+            <Route path="/visualize"    element={<Visualize />} />
+            <Route path="/docs"         element={<Docs />} />
+            <Route path="*"             element={
+              <div style={{ textAlign: 'center', padding: '80px 24px' }}>
+                <div style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 48,
+                  fontWeight: 700,
+                  color: 'var(--text-primary)',
+                  marginBottom: 12,
+                }}>404</div>
+                <div style={{ color: 'var(--text-muted)', fontSize: 14 }}>
+                  Page not found.
+                </div>
+              </div>
+            } />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

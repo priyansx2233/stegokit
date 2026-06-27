@@ -1,5 +1,4 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 const NAV_ITEMS = [
   { to: '/',             label: 'Home' },
@@ -11,58 +10,63 @@ const NAV_ITEMS = [
   { to: '/docs',         label: 'Docs' },
 ];
 
+
+
 export default function Navbar() {
   const location = useLocation();
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          setScrolled(window.scrollY > 80);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const isHome = location.pathname === '/';
 
   return (
     <header style={{
       position: 'sticky',
       top: 0,
       zIndex: 200,
-      background: 'rgba(13,17,23,0.92)',
-      backdropFilter: 'blur(12px)',
-      WebkitBackdropFilter: 'blur(12px)',
-      borderBottom: '1px solid var(--border-subtle)',
-      boxShadow: scrolled ? '0 1px 0 var(--border-subtle)' : 'none',
-      transition: 'box-shadow 0.2s ease',
+      background: 'rgba(10, 10, 10, 0.95)',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
+      borderBottom: '1px solid rgba(255,255,255,0.06)',
     }}>
       <nav style={{
         maxWidth: 1200,
         margin: '0 auto',
         display: 'flex',
         alignItems: 'center',
-        padding: '0 24px',
-        height: 56,
+        padding: '0 20px',
+        height: 48,
       }}>
-        {/* Logo wordmark */}
+        {/* Logo */}
         <NavLink to="/" style={{
           textDecoration: 'none',
-          marginRight: 40,
+          marginRight: 32,
           flexShrink: 0,
-          fontWeight: 600,
-          fontSize: 16,
-          color: 'var(--text-primary)',
-          letterSpacing: 0,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 7,
         }}>
-          StegoKit
+          {/* Small icon box */}
+          <div style={{
+            width: 22,
+            height: 22,
+            background: 'var(--bg-elevated)',
+            border: '1px solid rgba(255,255,255,0.12)',
+            borderRadius: 4,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M3 9h18M9 21V9"/>
+            </svg>
+          </div>
+          <span style={{
+            fontWeight: 600,
+            fontSize: 14,
+            color: 'var(--text-primary)',
+            letterSpacing: '-0.01em',
+            fontFamily: "'JetBrains Mono', monospace",
+          }}>
+            StegoKit
+          </span>
         </NavLink>
 
         {/* Nav links */}
@@ -75,7 +79,10 @@ export default function Navbar() {
           scrollbarWidth: 'none',
         }}>
           {NAV_ITEMS.map(({ to, label }) => {
-            const active = location.pathname === to;
+            const active = to === '/'
+              ? location.pathname === '/'
+              : location.pathname.startsWith(to);
+
             return (
               <NavLink
                 key={to}
@@ -83,19 +90,26 @@ export default function Navbar() {
                 style={{
                   position: 'relative',
                   padding: '0 14px',
-                  height: 56,
+                  height: 48,
                   display: 'flex',
                   alignItems: 'center',
-                  fontSize: 14,
-                  fontWeight: 400,
-                  color: active ? 'var(--text-primary)' : 'var(--text-secondary)',
+                  fontSize: 13,
+                  fontWeight: active ? 600 : 400,
+                  color: active ? '#ffffff' : 'rgba(255,255,255,0.45)',
                   textDecoration: 'none',
                   whiteSpace: 'nowrap',
                   transition: 'color 0.15s',
-                  borderBottom: active ? '2px solid var(--accent-blue)' : '2px solid transparent',
+                  borderBottom: active
+                    ? '2px solid var(--accent)'
+                    : '2px solid transparent',
+                  marginBottom: -1,
                 }}
-                onMouseEnter={e => { if (!active) e.currentTarget.style.color = 'var(--text-primary)'; }}
-                onMouseLeave={e => { if (!active) e.currentTarget.style.color = 'var(--text-secondary)'; }}
+                onMouseEnter={e => {
+                  if (!active) e.currentTarget.style.color = 'rgba(255,255,255,0.75)';
+                }}
+                onMouseLeave={e => {
+                  if (!active) e.currentTarget.style.color = 'rgba(255,255,255,0.45)';
+                }}
               >
                 {label}
               </NavLink>
@@ -103,20 +117,7 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Version Badge */}
-        <div style={{
-          marginLeft: 16,
-          padding: '4px 12px',
-          background: 'var(--bg-elevated)',
-          border: '1px solid var(--border-default)',
-          borderRadius: 999,
-          color: 'var(--text-secondary)',
-          fontSize: 12,
-          fontWeight: 600,
-          fontFamily: "'JetBrains Mono', monospace",
-        }}>
-          v1.0.0
-        </div>
+
       </nav>
     </header>
   );

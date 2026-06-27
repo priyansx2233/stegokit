@@ -93,20 +93,67 @@ On decoding, the process is reversed: extract → decrypt → interpret.`,
 export default function Docs() {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '48px 24px' }}>
-      <div className="fade-up">
-        <h1 className="section-title">Documentation</h1>
-        <p className="section-subtitle">
+      <div className="fade-up" style={{ marginBottom: 36 }}>
+        <h1 style={{
+          fontSize: 'clamp(2.2rem, 4vw, 3rem)',
+          fontWeight: 700,
+          letterSpacing: '-0.02em',
+          color: '#ffffff',
+          marginBottom: 8,
+        }}>
+          Documentation
+        </h1>
+        <p style={{
+          fontSize: 15,
+          color: 'rgba(255,255,255,0.45)',
+          lineHeight: 1.65,
+        }}>
           Technical reference for StegoKit's steganography algorithms, API, and CLI.
         </p>
       </div>
 
       {/* Table of contents */}
-      <div className="card" style={{ marginBottom: 32 }}>
-        <div className="label">Contents</div>
+      <div style={{
+        background: 'var(--bg-card)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        borderRadius: 10,
+        padding: '16px 20px',
+        marginBottom: 36,
+      }}>
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: 10,
+          fontWeight: 600,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: 'rgba(255,255,255,0.3)',
+          marginBottom: 12,
+        }}>
+          Contents
+        </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {SECTIONS.map((s) => (
             <a key={s.id} href={`#${s.id}`}
-              style={{ fontSize: 13, color: 'var(--accent-blue)', textDecoration: 'none', padding: '4px 10px', background: 'rgba(47,129,247,0.1)', borderRadius: 6 }}>
+              style={{
+                fontSize: 12,
+                color: 'var(--accent)',
+                textDecoration: 'none',
+                padding: '4px 10px',
+                background: 'rgba(0,229,195,0.07)',
+                border: '1px solid rgba(0,229,195,0.15)',
+                borderRadius: 5,
+                fontFamily: "'JetBrains Mono', monospace",
+                transition: 'all 0.15s',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'rgba(0,229,195,0.14)';
+                e.currentTarget.style.borderColor = 'rgba(0,229,195,0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'rgba(0,229,195,0.07)';
+                e.currentTarget.style.borderColor = 'rgba(0,229,195,0.15)';
+              }}
+            >
               {s.title}
             </a>
           ))}
@@ -114,35 +161,84 @@ export default function Docs() {
       </div>
 
       {SECTIONS.map((s) => (
-        <div key={s.id} id={s.id} style={{ marginBottom: 36 }}>
-          <h2 style={{ fontSize: 22, fontWeight: 700, letterSpacing: 0, marginBottom: 16, paddingTop: 8 }}>
+        <div key={s.id} id={s.id} style={{ marginBottom: 40 }}>
+          <h2 style={{
+            fontSize: 20,
+            fontWeight: 700,
+            letterSpacing: '-0.01em',
+            color: '#ffffff',
+            marginBottom: 14,
+            paddingTop: 4,
+          }}>
             {s.title}
           </h2>
 
           {s.content && (
-            <div className="card" style={{ background: s.code ? 'var(--bg-base)' : undefined }}>
+            <div style={{
+              background: s.code ? '#080808' : 'var(--bg-card)',
+              border: '1px solid rgba(255,255,255,0.07)',
+              borderRadius: 8,
+              padding: '18px 20px',
+            }}>
               <pre style={{
-                margin: 0, whiteSpace: 'pre-wrap', lineHeight: 1.7,
-                fontSize: s.code ? 13 : 15,
+                margin: 0,
+                whiteSpace: 'pre-wrap',
+                lineHeight: 1.75,
+                fontSize: s.code ? 13 : 14,
                 fontFamily: s.code ? "'JetBrains Mono', monospace" : 'inherit',
-                color: 'var(--text-primary)',
-              }}>{s.content}</pre>
+                color: s.code ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.6)',
+              }}>
+                {s.content}
+              </pre>
             </div>
           )}
 
           {s.endpoints && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {s.endpoints.map((ep) => (
-                <div key={ep.path} className="card" style={{ padding: '14px 18px' }}>
+                <div key={ep.path} style={{
+                  background: 'var(--bg-card)',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  borderRadius: 8,
+                  padding: '12px 16px',
+                }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-                    <span className={`badge ${ep.method === 'GET' ? 'badge-green' : 'badge-purple'}`}>
+                    <span style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '2px 8px',
+                      borderRadius: 4,
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: 11,
+                      fontWeight: 700,
+                      letterSpacing: '0.04em',
+                      background: ep.method === 'GET' ? 'rgba(0,229,195,0.12)' : 'rgba(77,159,255,0.12)',
+                      color: ep.method === 'GET' ? 'var(--accent)' : '#4d9fff',
+                      border: `1px solid ${ep.method === 'GET' ? 'rgba(0,229,195,0.2)' : 'rgba(77,159,255,0.2)'}`,
+                    }}>
                       {ep.method}
                     </span>
-                    <code style={{ fontFamily: 'monospace', fontSize: 14, color: 'var(--text-primary)' }}>{ep.path}</code>
-                    <span style={{ fontSize: 13, color: 'var(--text-secondary)', marginLeft: 'auto' }}>{ep.desc}</span>
+                    <code style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: 13,
+                      color: 'rgba(255,255,255,0.85)',
+                    }}>
+                      {ep.path}
+                    </code>
+                    <span style={{
+                      fontSize: 12,
+                      color: 'rgba(255,255,255,0.35)',
+                      marginLeft: 'auto',
+                    }}>
+                      {ep.desc}
+                    </span>
                   </div>
-                  <div style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
-                    <strong>Body:</strong> {ep.body}
+                  <div style={{
+                    fontSize: 12,
+                    color: 'rgba(255,255,255,0.3)',
+                    fontFamily: "'JetBrains Mono', monospace",
+                  }}>
+                    Body: {ep.body}
                   </div>
                 </div>
               ))}
@@ -150,19 +246,34 @@ export default function Docs() {
           )}
 
           {s.commands && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {s.commands.map((c, i) => (
-                <div key={i} className="card" style={{ padding: '12px 18px', background: 'var(--bg-base)' }}>
-                  <code style={{ fontFamily: 'monospace', fontSize: 13, color: 'var(--success)', display: 'block', marginBottom: 4 }}>
+                <div key={i} style={{
+                  background: '#080808',
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  borderRadius: 8,
+                  padding: '12px 16px',
+                }}>
+                  <code style={{
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: 13,
+                    color: 'var(--accent)',
+                    display: 'block',
+                    marginBottom: 4,
+                  }}>
                     $ {c.cmd}
                   </code>
-                  <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{c.desc}</span>
+                  <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.3)' }}>{c.desc}</span>
                 </div>
               ))}
             </div>
           )}
 
-          <div className="divider" style={{ marginTop: 28 }} />
+          <div style={{
+            height: 1,
+            background: 'rgba(255,255,255,0.05)',
+            marginTop: 32,
+          }} />
         </div>
       ))}
     </div>

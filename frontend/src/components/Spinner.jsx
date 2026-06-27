@@ -1,14 +1,16 @@
 /**
  * Spinner — inline loading spinner.
  */
-export default function Spinner({ size = 20, color = '#2f81f7' }) {
+export default function Spinner({ size = 20, color = 'var(--accent)' }) {
   return (
     <div style={{
-      width: size, height: size,
-      border: `2px solid rgba(255,255,255,0.1)`,
+      width: size,
+      height: size,
+      border: `2px solid rgba(255,255,255,0.08)`,
       borderTop: `2px solid ${color}`,
       borderRadius: '50%',
       display: 'inline-block',
+      flexShrink: 0,
     }} className="spin" />
   );
 }
