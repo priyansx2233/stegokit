@@ -39,7 +39,7 @@ npm run install:all
 ```
 
 ### Running
-
+**Change Port if in use!!!**
 **Terminal 1 — Start API backend (port 5000):**
 ```bash
 npm run backend
