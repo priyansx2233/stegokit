@@ -25,21 +25,35 @@ const allowedOrigins = [
   'http://127.0.0.1:5175',
   'https://codeaurelius0.github.io',
   'https://codeaurelius0.github.io/stegokit',
+  // Vercel deployments
+  'https://stegokit.vercel.app',
 ].filter(Boolean);
+
+// Also allow any *.vercel.app preview URL and anything in CORS_ORIGIN
+function isOriginAllowed(origin) {
+  if (!origin) return true; // server-to-server / curl
+  if (allowedOrigins.includes(origin)) return true;
+  // Allow all Vercel preview deployments
+  if (/^https:\/\/stegokit[a-z0-9-]*\.vercel\.app$/.test(origin)) return true;
+  return false;
+}
 const frontendDist = path.resolve(__dirname, '../frontend/dist');
 
 // ── Middleware ────────────────────────────────────────────
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (isOriginAllowed(origin)) {
       callback(null, true);
-      return;
+    } else {
+      callback(new Error(`CORS origin not allowed: ${origin}`));
     }
-    callback(new Error('CORS origin not allowed'));
   },
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: false,
 }));
+// Ensure OPTIONS preflight is handled for all routes
+app.options('*', cors());
 
 app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ extended: true, limit: '500mb' }));
