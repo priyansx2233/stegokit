@@ -1,9 +1,4 @@
-/**
- * @file tests/steganography.test.js
- * @description Unit tests for the core steganography engine.
- *   Tests LSB encode/decode round-trips for both image and text payloads,
- *   capacity calculation, and error cases.
- */
+
 'use strict';
 
 const path   = require('path');
@@ -11,13 +6,10 @@ const Jimp   = require('jimp');
 const engine = require('../backend/steganography/engine');
 const binary = require('../backend/utils/binary');
 
-// ── Helper: create an in-memory PNG buffer of a solid-colour image ───────────
 async function makeTestImage(width, height, color = 0x4488ccff) {
   const img = new Jimp(width, height, color);
   return img.getBufferAsync('image/png');
 }
-
-// ────────────────────────────────────────────────────────────────────────────
 
 describe('binary utilities', () => {
   test('intToBinary pads correctly', () => {
@@ -62,8 +54,6 @@ describe('binary utilities', () => {
   });
 });
 
-// ────────────────────────────────────────────────────────────────────────────
-
 describe('calculateCapacity', () => {
   test('returns correct capacity for small image', async () => {
     const buf = await makeTestImage(100, 100);
@@ -71,7 +61,7 @@ describe('calculateCapacity', () => {
     expect(cap.width).toBe(100);
     expect(cap.height).toBe(100);
     expect(cap.totalPixels).toBe(10000);
-    // (10000 - 32) * 3 / 8 = 3738
+
     expect(cap.maxBytes).toBe(Math.floor((10000 - 32) * 3 / 8));
     expect(cap.usedBytes).toBe(0);
   });
@@ -83,13 +73,11 @@ describe('calculateCapacity', () => {
   });
 });
 
-// ────────────────────────────────────────────────────────────────────────────
-
 describe('encodeText / decodeText', () => {
   let carrierBuf;
 
   beforeAll(async () => {
-    // 400×400 gives ~60 KB capacity — enough for all text tests
+
     carrierBuf = await makeTestImage(400, 400);
   });
 
@@ -128,7 +116,7 @@ describe('encodeText / decodeText', () => {
   });
 
   test('throws on non-existent payload', async () => {
-    // A fresh image with no payload (header = 0)
+
     const freshBuf = await makeTestImage(50, 50, 0xff0000ff);
     await expect(engine.decodeText(freshBuf)).rejects.toThrow(/no valid steganographic/i);
   });
@@ -144,25 +132,22 @@ describe('encodeText / decodeText', () => {
   });
 });
 
-// ────────────────────────────────────────────────────────────────────────────
-
 describe('encodeImage / decodeImage', () => {
   let carrierBuf;
   let secretBuf;
 
   beforeAll(async () => {
     carrierBuf = await makeTestImage(300, 300, 0x224466ff);
-    secretBuf  = await makeTestImage(40, 40,  0xcc3355ff); // tiny secret
+    secretBuf  = await makeTestImage(40, 40,  0xcc3355ff);
   });
 
   test('round-trips a secret image', async () => {
     const encoded   = await engine.encodeImage(carrierBuf, secretBuf);
     const recovered = await engine.decodeImage(encoded);
-    // Recovered must be a valid PNG buffer
+
     expect(recovered).toBeInstanceOf(Buffer);
     expect(recovered.slice(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
 
-    // Dimensions should match
     const img = await Jimp.read(recovered);
     expect(img.bitmap.width).toBe(40);
     expect(img.bitmap.height).toBe(40);
@@ -193,8 +178,6 @@ describe('encodeImage / decodeImage', () => {
     expect(img.bitmap.height).toBe(200);
   });
 });
-
-// ────────────────────────────────────────────────────────────────────────────
 
 describe('visualize', () => {
   test('returns a valid report structure', async () => {

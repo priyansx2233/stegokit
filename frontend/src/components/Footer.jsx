@@ -1,9 +1,5 @@
 import { Link } from 'react-router-dom';
 
-/**
- * Footer — shared site footer
- * Left: version info | Center: links | Right: STEGOKIT
- */
 export default function Footer() {
   return (
     <footer style={{
@@ -20,7 +16,7 @@ export default function Footer() {
         flexWrap: 'wrap',
         gap: 12,
       }}>
-        {/* Left — version info */}
+        {}
         <span style={{
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: 11,
@@ -30,7 +26,7 @@ export default function Footer() {
           v2.4.0-stable&nbsp;|&nbsp;0xDEADBEEF&nbsp;|&nbsp;SECURED SYSTEM
         </span>
 
-        {/* Center — links */}
+        {}
         <div style={{ display: 'flex', gap: 20 }}>
           <a
             href="https://github.com/CodeAurelius0"
@@ -62,7 +58,7 @@ export default function Footer() {
           </Link>
         </div>
 
-        {/* Right — wordmark */}
+        {}
         <span style={{
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: 12,

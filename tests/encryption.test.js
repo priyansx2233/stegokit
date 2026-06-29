@@ -1,7 +1,4 @@
-/**
- * @file tests/encryption.test.js
- * @description Unit tests for the AES-256-CBC encryption module.
- */
+
 'use strict';
 
 const aes = require('../backend/encryption/aes');
@@ -9,8 +6,6 @@ const aes = require('../backend/encryption/aes');
 describe('AES-256-CBC encryption', () => {
   const password  = 'super-secret-password-123!';
   const plaintext = 'Hello, StegoKit AES encryption test! 🔐';
-
-  // ── encryptBuffer / decryptBuffer ──────────────────────
 
   test('encrypts and decrypts a Buffer correctly', async () => {
     const buf       = Buffer.from(plaintext, 'utf8');
@@ -29,7 +24,7 @@ describe('AES-256-CBC encryption', () => {
   test('ciphertext is larger than plaintext (has salt+IV overhead)', async () => {
     const buf       = Buffer.from(plaintext, 'utf8');
     const encrypted = await aes.encryptBuffer(buf, password);
-    // salt(16) + iv(16) + at least plaintext.length bytes
+
     expect(encrypted.length).toBeGreaterThan(buf.length);
   });
 
@@ -50,11 +45,9 @@ describe('AES-256-CBC encryption', () => {
     expect(decrypted.length).toBe(0);
   });
 
-  // ── encryptText / decryptText ──────────────────────────
-
   test('encryptText / decryptText round-trip', async () => {
     const cipher = await aes.encryptText(plaintext, password);
-    expect(typeof cipher).toBe('string');                       // base64
+    expect(typeof cipher).toBe('string');
     const plain  = await aes.decryptText(cipher, password);
     expect(plain).toBe(plaintext);
   });

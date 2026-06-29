@@ -1,6 +1,4 @@
-/**
- * ResultPanel — shows a successfully encoded/decoded image result.
- */
+
 export default function ResultPanel({ title, imageDataUrl, filename = 'result.png', meta = [] }) {
   if (!imageDataUrl) return null;
 
@@ -20,7 +18,7 @@ export default function ResultPanel({ title, imageDataUrl, filename = 'result.pn
       borderRadius: 10,
       overflow: 'hidden',
     }}>
-      {/* Header */}
+      {}
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -69,7 +67,7 @@ export default function ResultPanel({ title, imageDataUrl, filename = 'result.pn
         </button>
       </div>
 
-      {/* Image */}
+      {}
       <div style={{ background: '#050505', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <img
           src={imageDataUrl}
@@ -83,7 +81,7 @@ export default function ResultPanel({ title, imageDataUrl, filename = 'result.pn
         />
       </div>
 
-      {/* Meta */}
+      {}
       {meta.length > 0 && (
         <div style={{
           display: 'grid',

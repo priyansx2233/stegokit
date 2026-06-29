@@ -1,7 +1,4 @@
-/**
- * @file commands/encodeText.js
- * @description stego encode-text command — hide text inside a carrier image.
- */
+
 'use strict';
 
 const fs    = require('fs');
@@ -22,7 +19,7 @@ module.exports = function encodeTextCommand(program) {
     .action(async (opts) => {
       const spinner = ora('Encoding text...').start();
       try {
-        // Resolve text from --text or --file
+
         let text = opts.text;
         if (!text && opts.file) {
           if (!fs.existsSync(opts.file)) {

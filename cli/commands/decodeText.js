@@ -1,7 +1,4 @@
-/**
- * @file commands/decodeText.js
- * @description stego decode-text command — extract hidden text from an encoded image.
- */
+
 'use strict';
 
 const fs    = require('fs');

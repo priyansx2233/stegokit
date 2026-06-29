@@ -1,6 +1,4 @@
-/**
- * PrivacyPolicy — standalone privacy policy page
- */
+
 export default function PrivacyPolicy() {
   const sectionStyle = {
     marginBottom: 40,
@@ -49,7 +47,7 @@ export default function PrivacyPolicy() {
     <div style={{ minHeight: '80vh', padding: '60px 24px' }}>
       <div style={{ maxWidth: 760, margin: '0 auto' }}>
 
-        {/* Header */}
+        {}
         <div style={{ marginBottom: 48 }}>
           <p style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -77,7 +75,7 @@ export default function PrivacyPolicy() {
 
         <hr style={dividerStyle} />
 
-        {/* Overview */}
+        {}
         <div style={sectionStyle}>
           <h2 style={headingStyle}>Overview</h2>
           <p style={paraStyle}>
@@ -87,7 +85,7 @@ export default function PrivacyPolicy() {
           </p>
         </div>
 
-        {/* Data We Do Not Collect */}
+        {}
         <div style={sectionStyle}>
           <h2 style={headingStyle}>Data We Do Not Collect</h2>
           <p style={paraStyle}>
@@ -103,7 +101,7 @@ export default function PrivacyPolicy() {
 
         <hr style={dividerStyle} />
 
-        {/* How It Works */}
+        {}
         <div style={sectionStyle}>
           <h2 style={headingStyle}>How Processing Works</h2>
           <p style={paraStyle}>
@@ -120,7 +118,7 @@ export default function PrivacyPolicy() {
 
         <hr style={dividerStyle} />
 
-        {/* Third-Party Services */}
+        {}
         <div style={sectionStyle}>
           <h2 style={headingStyle}>Third-Party Services</h2>
           <p style={paraStyle}>

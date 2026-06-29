@@ -1,9 +1,4 @@
-/**
- * @file utils/formatters.js
- * @description Display formatting helpers for capacity, file sizes, etc.
- */
 
-/** Format bytes to human-readable string */
 export function formatBytes(bytes) {
   if (bytes === 0) return '0 B';
   const k = 1024;
@@ -12,12 +7,10 @@ export function formatBytes(bytes) {
   return `${(bytes / Math.pow(k, i)).toFixed(1)} ${sizes[i]}`;
 }
 
-/** Clamp a number between min and max */
 export function clamp(val, min, max) {
   return Math.min(Math.max(val, min), max);
 }
 
-/** Convert a File to a data URL */
 export function fileToDataUrl(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -27,7 +20,6 @@ export function fileToDataUrl(file) {
   });
 }
 
-/** Get a colour class based on capacity percentage */
 export function capacityColor(pct) {
   const p = parseFloat(pct);
   if (p < 60) return '#3fb950';

@@ -10,8 +10,6 @@ const NAV_ITEMS = [
   { to: '/docs',         label: 'Docs' },
 ];
 
-
-
 export default function Navbar() {
   const location = useLocation();
 
@@ -33,7 +31,7 @@ export default function Navbar() {
         padding: '0 20px',
         height: 48,
       }}>
-        {/* Logo */}
+        {}
         <NavLink to="/" style={{
           textDecoration: 'none',
           marginRight: 32,
@@ -42,7 +40,7 @@ export default function Navbar() {
           alignItems: 'center',
           gap: 7,
         }}>
-          {/* Small icon box */}
+          {}
           <div style={{
             width: 22,
             height: 22,
@@ -69,7 +67,7 @@ export default function Navbar() {
           </span>
         </NavLink>
 
-        {/* Nav links */}
+        {}
         <div style={{
           display: 'flex',
           gap: 0,
@@ -116,7 +114,6 @@ export default function Navbar() {
             );
           })}
         </div>
-
 
       </nav>
     </header>

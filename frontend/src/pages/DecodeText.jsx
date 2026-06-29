@@ -58,7 +58,7 @@ export default function DecodeText() {
 
   return (
     <div style={{ maxWidth: 800, margin: '0 auto', padding: '48px 24px' }}>
-      {/* ─── Page header ── */}
+      {}
       <div className="fade-up" style={{ marginBottom: 36 }}>
         <h1 style={{
           fontSize: 'clamp(2.2rem, 4vw, 3rem)',
@@ -79,7 +79,7 @@ export default function DecodeText() {
         </p>
       </div>
 
-      {/* ─── Dropzone ── */}
+      {}
       <div style={{ marginBottom: 20 }}>
         <DropZone
           label="Encoded Image"
@@ -93,7 +93,7 @@ export default function DecodeText() {
         />
       </div>
 
-      {/* ─── Decryption key ── */}
+      {}
       <div style={{
         background: 'var(--bg-card)',
         border: '1px solid rgba(255,255,255,0.08)',
@@ -152,7 +152,7 @@ export default function DecodeText() {
 
       <ErrorAlert error={error} onDismiss={() => setError(null)} />
 
-      {/* ─── CTA ── */}
+      {}
       <button
         onClick={handleSubmit}
         disabled={!canSubmit}
@@ -182,7 +182,7 @@ export default function DecodeText() {
         }
       </button>
 
-      {/* ─── Result ── */}
+      {}
       {text && (
         <div className="fade-up" style={{
           background: 'var(--bg-card)',
@@ -190,7 +190,7 @@ export default function DecodeText() {
           borderRadius: 10,
           overflow: 'hidden',
         }}>
-          {/* Result header */}
+          {}
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -246,7 +246,7 @@ export default function DecodeText() {
             </div>
           </div>
 
-          {/* Recovered text */}
+          {}
           <div style={{
             background: '#0a0a0a',
             padding: '18px 20px',

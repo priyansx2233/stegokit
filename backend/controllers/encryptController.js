@@ -1,9 +1,4 @@
-/**
- * @file encryptController.js
- * POST /api/encrypt  — encrypt raw text with AES-256
- * POST /api/decrypt  — decrypt ciphertext back to text
- * Body (JSON): { text, password }  or  { ciphertext, password }
- */
+
 'use strict';
 
 const aes = require('../encryption/aes');

@@ -48,7 +48,7 @@ export default function EncodeText() {
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '48px 24px' }}>
-      {/* ─── Page header ── */}
+      {}
       <div className="fade-up" style={{ marginBottom: 36 }}>
         <h1 style={{
           fontSize: 'clamp(2.2rem, 4vw, 3rem)',
@@ -69,14 +69,14 @@ export default function EncodeText() {
         </p>
       </div>
 
-      {/* ─── Two columns: carrier + text ── */}
+      {}
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1.4fr',
         gap: 16,
         marginBottom: 20,
       }}>
-        {/* Carrier dropzone */}
+        {}
         <DropZone
           label="Carrier Image"
           headerIcon="file"
@@ -88,7 +88,7 @@ export default function EncodeText() {
           disabled={loading}
         />
 
-        {/* Text input */}
+        {}
         <div style={{
           background: 'var(--bg-card)',
           border: '1px solid rgba(255,255,255,0.08)',
@@ -145,7 +145,7 @@ export default function EncodeText() {
               onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.08)'}
             />
 
-            {/* Sample quick-fill buttons */}
+            {}
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 10 }}>
               {SAMPLE_TEXTS.map((s) => (
                 <button
@@ -180,14 +180,14 @@ export default function EncodeText() {
         </div>
       </div>
 
-      {/* ─── Encryption Parameters ── */}
+      {}
       <div style={{ maxWidth: 500, margin: '0 auto 28px' }}>
         <PasswordField value={password} onChange={setPassword} disabled={loading} showHeader={true} />
       </div>
 
       <ErrorAlert error={error} onDismiss={() => setError(null)} />
 
-      {/* ─── CTA ── */}
+      {}
       <button
         onClick={handleSubmit}
         disabled={!canSubmit}

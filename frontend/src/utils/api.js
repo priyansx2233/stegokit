@@ -1,14 +1,11 @@
-/**
- * @file utils/api.js
- * @description Axios client with base URL and helper methods for all API calls.
- */
+
 import axios from 'axios';
 
 const apiBaseUrl = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '');
 
 const api = axios.create({
   baseURL: apiBaseUrl,
-  timeout: 600000, // 10 min — large image encoding/decoding can take time
+  timeout: 600000,
 });
 
 api.interceptors.request.use((config) => {
@@ -22,8 +19,6 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// When responseType is 'arraybuffer' and the server returns an error JSON,
-// axios gives us an ArrayBuffer — decode it back so error.response.data.error works.
 api.interceptors.response.use(
   (res) => res,
   (err) => {
@@ -31,18 +26,12 @@ api.interceptors.response.use(
       try {
         const text = new TextDecoder().decode(err.response.data);
         err.response.data = JSON.parse(text);
-      } catch (_) { /* leave as-is */ }
+      } catch (_) {  }
     }
     return Promise.reject(err);
   }
 );
 
-// ── Generic helpers ───────────────────────────────────────────────────────────
-
-/**
- * Build a FormData object from a plain object.
- * Values that are File objects are appended as-is; others are stringified.
- */
 function buildForm(fields) {
   const form = new FormData();
   for (const [key, value] of Object.entries(fields)) {
@@ -52,13 +41,10 @@ function buildForm(fields) {
   return form;
 }
 
-// ── API methods ───────────────────────────────────────────────────────────────
-
 export const stegoApi = {
-  /** Check backend health */
+
   health: () => api.get('/health'),
 
-  /** POST /encode/image — hide secret image in carrier; returns binary PNG blob URL */
   encodeImage: async ({ carrier, secret, password }) => {
     const res = await api.post(
       '/encode/image',
@@ -75,13 +61,12 @@ export const stegoApi = {
           mimeType:     'image/png',
           encrypted:    headers['x-encrypted'] === 'true',
           sizeBytes:    parseInt(headers['x-size-bytes'] || '0', 10),
-          capacity:     {},   // capacity info dropped (no JSON wrapper)
+          capacity:     {},
         },
       },
     };
   },
 
-  /** POST /decode/image — extract hidden image; returns binary PNG blob URL */
   decodeImage: async ({ encoded, password }) => {
     const res = await api.post(
       '/decode/image',
@@ -103,7 +88,6 @@ export const stegoApi = {
     };
   },
 
-  /** POST /encode/text — hide text in carrier; returns binary PNG blob URL */
   encodeText: async ({ carrier, text, password }) => {
     const res = await api.post(
       '/encode/text',
@@ -127,19 +111,15 @@ export const stegoApi = {
     };
   },
 
-  /** POST /decode/text — extract hidden text */
   decodeText: ({ encoded, password }) =>
     api.post('/decode/text', buildForm({ encoded, password })),
 
-  /** POST /visualize — pixel-level comparison report */
   visualize: ({ carrier, encoded, sampleCount = 16 }) =>
     api.post('/visualize', buildForm({ carrier, encoded, sampleCount: String(sampleCount) })),
 
-  /** POST /encrypt — standalone AES-256 encrypt */
   encrypt: ({ text, password }) =>
     api.post('/encrypt', { text, password }),
 
-  /** POST /decrypt — standalone AES-256 decrypt */
   decrypt: ({ ciphertext, password }) =>
     api.post('/decrypt', { ciphertext, password }),
 };

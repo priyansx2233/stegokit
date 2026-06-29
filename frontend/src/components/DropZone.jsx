@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react';
 
-/* ─── SVG Icons ─────────────────────────────────────────────── */
 const IconUpload = () => (
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -25,21 +24,6 @@ const IconLock = () => (
   </svg>
 );
 
-/**
- * DropZone — Drag-and-drop + click-to-browse image uploader.
- *
- * Props:
- *   label        — card header label (monospace uppercase)
- *   headerIcon   — 'file' | 'lock' | 'upload' (icon shown in card header right)
- *   emptyTitle   — main text when empty
- *   emptyHint    — hint text when empty (monospace)
- *   accept       — MIME types string
- *   file         — current File | null (controlled)
- *   preview      — dataURL string | null
- *   onChange     — (file, dataUrl) => void
- *   disabled     — bool
- *   variant      — 'default' | 'large' (large has cyan border)
- */
 export default function DropZone({
   label,
   headerIcon = 'file',
@@ -73,7 +57,6 @@ export default function DropZone({
 
   const isLarge = variant === 'large';
 
-  /* ── Large variant (used in DecodeImage) ── */
   if (isLarge) {
     return (
       <div
@@ -179,10 +162,9 @@ export default function DropZone({
     );
   }
 
-  /* ── Default card-style variant ── */
   return (
     <div className="upload-card">
-      {/* Card header */}
+      {}
       <div className="upload-card-header">
         <span className="upload-card-label">{label}</span>
         <div style={{ color: 'rgba(255,255,255,0.25)' }}>
@@ -190,7 +172,7 @@ export default function DropZone({
         </div>
       </div>
 
-      {/* Drop zone body */}
+      {}
       <div
         className="upload-card-body"
         style={{

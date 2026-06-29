@@ -1,9 +1,4 @@
-/**
- * @file encodeImageController.js
- * POST /api/encode/image
- * Fields: carrier (file), secret (file), password? (string)
- * Response: binary PNG stream with metadata in headers
- */
+
 'use strict';
 
 const engine = require('../steganography/engine');
@@ -25,7 +20,6 @@ async function encodeImageController(req, res, next) {
 
     const encodedBuf = await engine.encodeImage(carrierBuf, secretBuf, { password });
 
-    // Stream binary PNG — no base64 wrapping, no JSON bloat
     res.set({
       'Content-Type':        'image/png',
       'Content-Length':      encodedBuf.length,

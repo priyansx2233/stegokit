@@ -1,7 +1,4 @@
-/**
- * @file commands/encodeImage.js
- * @description stego encode-image command — hide a secret image inside a carrier.
- */
+
 'use strict';
 
 const fs    = require('fs');
@@ -9,13 +6,8 @@ const path  = require('path');
 const chalk = require('chalk');
 const ora   = require('ora');
 
-// Use the shared engine (relative path from cli/ to backend/)
 const engine = require('../../backend/steganography/engine');
 
-/**
- * Register the encode-image command on a Commander program.
- * @param {import('commander').Command} program
- */
 module.exports = function encodeImageCommand(program) {
   program
     .command('encode-image')
@@ -27,7 +19,7 @@ module.exports = function encodeImageCommand(program) {
     .action(async (opts) => {
       const spinner = ora('Encoding image...').start();
       try {
-        // Validate inputs
+
         if (!fs.existsSync(opts.carrier)) {
           spinner.fail(chalk.red(`Carrier file not found: ${opts.carrier}`));
           process.exit(1);
@@ -40,7 +32,6 @@ module.exports = function encodeImageCommand(program) {
         const carrierBuf = fs.readFileSync(opts.carrier);
         const secretBuf  = fs.readFileSync(opts.secret);
 
-        // Capacity check
         const cap = await engine.calculateCapacity(carrierBuf, secretBuf.length);
         spinner.text = `Carrier capacity: ${cap.maxBytes.toLocaleString()} bytes | Payload: ${secretBuf.length.toLocaleString()} bytes`;
 
@@ -49,7 +40,6 @@ module.exports = function encodeImageCommand(program) {
           onProgress: (pct) => { spinner.text = `Encoding... ${pct}%`; },
         });
 
-        // Ensure output dir exists
         const outDir = path.dirname(path.resolve(opts.output));
         if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 

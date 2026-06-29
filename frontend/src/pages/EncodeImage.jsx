@@ -49,7 +49,7 @@ export default function EncodeImage() {
 
   return (
     <div style={{ maxWidth: 1000, margin: '0 auto', padding: '48px 24px' }}>
-      {/* ─── Page header ── */}
+      {}
       <div className="fade-up" style={{ marginBottom: 36 }}>
         <h1 style={{
           fontSize: 'clamp(2.2rem, 4vw, 3rem)',
@@ -71,7 +71,7 @@ export default function EncodeImage() {
         </p>
       </div>
 
-      {/* ─── Two dropzone cards ── */}
+      {}
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
@@ -100,7 +100,7 @@ export default function EncodeImage() {
         />
       </div>
 
-      {/* ─── Encryption Parameters (centered) ── */}
+      {}
       <div style={{
         maxWidth: 500,
         margin: '0 auto 32px',
@@ -115,7 +115,7 @@ export default function EncodeImage() {
 
       <ErrorAlert error={error} onDismiss={() => setError(null)} />
 
-      {/* ─── CTA ── */}
+      {}
       <button
         onClick={handleSubmit}
         disabled={!canSubmit}

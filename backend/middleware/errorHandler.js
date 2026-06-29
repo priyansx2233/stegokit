@@ -1,21 +1,10 @@
-/**
- * @file errorHandler.js
- * @description Global Express error-handling middleware.
- *   Normalises all errors into a consistent JSON response shape:
- *     { success: false, error: string, code?: string }
- */
 
 'use strict';
 
 const multer = require('multer');
 
-/**
- * Map known error types to HTTP status codes.
- * @param {Error} err
- * @returns {number}
- */
 function resolveStatus(err) {
-  // Multer errors
+
   if (err instanceof multer.MulterError) {
     if (err.code === 'LIMIT_FILE_SIZE') return 413;
     return 400;
@@ -36,16 +25,10 @@ function resolveStatus(err) {
   return 500;
 }
 
-/**
- * Express error handler — must be registered LAST (4-arg signature).
- * @type {import('express').ErrorRequestHandler}
- */
-// eslint-disable-next-line no-unused-vars
 function errorHandler(err, _req, res, _next) {
   const status  = resolveStatus(err);
   const message = err.message || 'An unexpected error occurred.';
 
-  // Log server errors
   if (status >= 500) {
     console.error('[StegoKit Error]', err);
   }

@@ -1,6 +1,4 @@
-/**
- * Spinner — inline loading spinner.
- */
+
 export default function Spinner({ size = 20, color = 'var(--accent)' }) {
   return (
     <div style={{

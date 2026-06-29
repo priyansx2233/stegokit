@@ -1,16 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
-
-
-/* ─── Terminal animation log lines ─────────────────────────── */
 const LOG_LINES = [
   { text: '> initializing payload...', color: 'var(--text-secondary)' },
   { text: '> encoding bits...',         color: 'var(--text-secondary)' },
   { text: '> success.',                 color: 'var(--accent)', bold: true },
 ];
 
-/* ─── Bit blocks for Secure Encryption card ─────────────────── */
 function BitBlocks() {
   const blocks = [
     { color: 'var(--accent)' },
@@ -40,9 +36,9 @@ export default function Home() {
   return (
     <div style={{ overflow: 'hidden' }}>
 
-      {/* ═══════════════════════════════════════════
-          HERO
-          ═══════════════════════════════════════════ */}
+      {
+
+}
       <section style={{
         padding: '100px 24px 80px',
         textAlign: 'center',
@@ -137,9 +133,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════
-          FEATURE CARDS — two column row
-          ═══════════════════════════════════════════ */}
+      {
+
+}
       <section style={{ padding: '0 24px 28px' }}>
         <div className="container-vsc">
           <div style={{
@@ -148,7 +144,7 @@ export default function Home() {
             gap: 16,
           }}>
 
-            {/* Card 1: Image-in-Image */}
+            {}
             <div className="fade-up" style={{
               background: 'var(--bg-card)',
               border: '1px solid rgba(255,255,255,0.07)',
@@ -158,7 +154,7 @@ export default function Home() {
               display: 'flex',
               flexDirection: 'column',
             }}>
-              {/* Module tag */}
+              {}
               <div style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 11,
@@ -194,14 +190,14 @@ export default function Home() {
                 Bit algorithms. Undetectable by standard forensic tools.
               </p>
 
-              {/* Visual demo: lock → arrow → image */}
+              {}
               <div style={{
                 marginTop: 'auto',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 14,
               }}>
-                {/* Lock box */}
+                {}
                 <div style={{
                   width: 52,
                   height: 52,
@@ -218,10 +214,10 @@ export default function Home() {
                   </svg>
                 </div>
 
-                {/* Arrow */}
+                {}
                 <div style={{ color: 'var(--accent)', fontSize: 20, lineHeight: 1 }}>→</div>
 
-                {/* Image thumbnail placeholder */}
+                {}
                 <div style={{
                   width: 52,
                   height: 52,
@@ -233,7 +229,7 @@ export default function Home() {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                  {/* Pixel grid pattern to simulate an image */}
+                  {}
                   <div style={{
                     display: 'grid',
                     gridTemplateColumns: 'repeat(5, 1fr)',
@@ -253,7 +249,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Card 2: Text-in-Image */}
+            {}
             <div className="fade-up" style={{
               background: 'var(--bg-card)',
               border: '1px solid rgba(255,255,255,0.07)',
@@ -263,7 +259,7 @@ export default function Home() {
               display: 'flex',
               flexDirection: 'column',
             }}>
-              {/* Module tag */}
+              {}
               <div style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 11,
@@ -298,7 +294,7 @@ export default function Home() {
                 Conceal encrypted text payloads within the pixel data of innocent-looking images.
               </p>
 
-              {/* Terminal log */}
+              {}
               <div style={{
                 marginTop: 'auto',
                 background: 'var(--bg-elevated)',
@@ -324,9 +320,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════
-          SECURE ENCRYPTION — full-width card
-          ═══════════════════════════════════════════ */}
+      {
+
+}
       <section style={{ padding: '0 24px 60px' }}>
         <div className="container-vsc">
           <div className="fade-up" style={{
@@ -341,7 +337,7 @@ export default function Home() {
             flexWrap: 'wrap',
           }}>
             <div style={{ flex: '1 1 360px' }}>
-              {/* Module tag */}
+              {}
               <div style={{
                 fontFamily: "'JetBrains Mono', monospace",
                 fontSize: 11,
@@ -379,7 +375,7 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Right — bit visualization */}
+            {}
             <div style={{
               display: 'flex',
               alignItems: 'center',

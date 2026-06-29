@@ -1,9 +1,5 @@
 import { formatBytes, capacityColor } from '../utils/formatters';
 
-/**
- * CapacityMeter — shows payload usage relative to carrier capacity.
- * Props: capacity object from API { maxBytes, usedBytes, remainingBytes, percentUsed }
- */
 export default function CapacityMeter({ capacity }) {
   if (!capacity) return null;
   const pct   = parseFloat(capacity.percentUsed) || 0;
@@ -25,7 +21,7 @@ export default function CapacityMeter({ capacity }) {
         </span>
       </div>
 
-      {/* Progress bar */}
+      {}
       <div style={{ height: 6, background: 'var(--bg-elevated)', borderRadius: 3, overflow: 'hidden', marginBottom: 12 }}>
         <div style={{
           height: '100%',

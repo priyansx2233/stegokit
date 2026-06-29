@@ -1,7 +1,4 @@
-/**
- * @file commands/decodeImage.js
- * @description stego decode-image command — extract a hidden image from an encoded carrier.
- */
+
 'use strict';
 
 const fs    = require('fs');

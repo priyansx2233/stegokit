@@ -29,7 +29,6 @@ const IconRecover = () => (
   </svg>
 );
 
-/* ─── Simulated log lines ───────────────────────────────── */
 const INITIAL_LOG = [
   { text: '> Waiting for carrier image...', color: 'rgba(255,255,255,0.3)' },
 ];
@@ -67,7 +66,7 @@ export default function DecodeImage() {
 
   return (
     <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 24px' }}>
-      {/* ─── Page header ── */}
+      {}
       <div className="fade-up" style={{ marginBottom: 36 }}>
         <h1 style={{
           fontSize: 'clamp(2.2rem, 4vw, 3rem)',
@@ -89,7 +88,7 @@ export default function DecodeImage() {
         </p>
       </div>
 
-      {/* ─── Two-column layout ── */}
+      {}
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 340px',
@@ -97,9 +96,9 @@ export default function DecodeImage() {
         alignItems: 'start',
       }}>
 
-        {/* LEFT column: dropzone + decryption params + CTA */}
+        {}
         <div>
-          {/* Large dropzone with cyan border */}
+          {}
           <div style={{ marginBottom: 20 }}>
             <DropZone
               variant="large"
@@ -112,7 +111,7 @@ export default function DecodeImage() {
             />
           </div>
 
-          {/* Decryption Parameters */}
+          {}
           <div style={{
             background: 'var(--bg-card)',
             border: '1px solid rgba(255,255,255,0.08)',
@@ -132,7 +131,7 @@ export default function DecodeImage() {
               Decryption Parameters
             </div>
 
-            {/* Password input with lock icon */}
+            {}
             <div style={{ marginBottom: 14 }}>
               <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>
                 Decryption Key (Password)
@@ -175,7 +174,7 @@ export default function DecodeImage() {
               </div>
             </div>
 
-            {/* Checkbox */}
+            {}
             <label style={{
               display: 'flex',
               alignItems: 'center',
@@ -203,7 +202,7 @@ export default function DecodeImage() {
 
           <ErrorAlert error={error} onDismiss={() => setError(null)} />
 
-          {/* CTA */}
+          {}
           <button
             onClick={handleSubmit}
             disabled={!encoded.file || loading}
@@ -236,16 +235,16 @@ export default function DecodeImage() {
           </button>
         </div>
 
-        {/* RIGHT column: Analysis Log */}
+        {}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {/* Log panel */}
+          {}
           <div style={{
             background: 'var(--bg-card)',
             border: '1px solid rgba(255,255,255,0.08)',
             borderRadius: 10,
             overflow: 'hidden',
           }}>
-            {/* Log header */}
+            {}
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -268,7 +267,7 @@ export default function DecodeImage() {
               </span>
             </div>
 
-            {/* Log body */}
+            {}
             <div style={{
               padding: '14px 16px',
               fontFamily: "'JetBrains Mono', monospace",
@@ -286,7 +285,7 @@ export default function DecodeImage() {
               ))}
             </div>
 
-            {/* Stats */}
+            {}
             {encoded.file && (
               <div style={{
                 borderTop: '1px solid rgba(255,255,255,0.06)',
@@ -320,7 +319,7 @@ export default function DecodeImage() {
             )}
           </div>
 
-          {/* Channel Density */}
+          {}
           <div style={{
             background: 'var(--bg-card)',
             border: '1px solid rgba(255,255,255,0.08)',

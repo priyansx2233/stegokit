@@ -1,8 +1,4 @@
-/**
- * @file decodeTextController.js
- * POST /api/decode/text
- * Fields: encoded (file), password? (string)
- */
+
 'use strict';
 
 const engine = require('../steganography/engine');

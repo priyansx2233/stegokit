@@ -1,8 +1,4 @@
-/**
- * @file visualizeController.js
- * POST /api/visualize
- * Fields: carrier (file), encoded (file), sampleCount? (number)
- */
+
 'use strict';
 
 const engine = require('../steganography/engine');

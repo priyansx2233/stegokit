@@ -1,6 +1,4 @@
-/**
- * ErrorAlert — displays an API or validation error.
- */
+
 export default function ErrorAlert({ error, onDismiss }) {
   if (!error) return null;
   return (

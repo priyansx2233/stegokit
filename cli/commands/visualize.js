@@ -1,7 +1,4 @@
-/**
- * @file commands/visualize.js
- * @description stego visualize command — display LSB visualization report.
- */
+
 'use strict';
 
 const fs    = require('fs');
@@ -35,7 +32,6 @@ module.exports = function visualizeCommand(program) {
         const report = await engine.visualize(carrierBuf, encodedBuf, { sampleCount });
         spinner.stop();
 
-        // ── Header ─────────────────────────────────────────
         console.log(chalk.cyan('\n╔══════════════════════════════════════════════════╗'));
         console.log(chalk.cyan('║         StegoKit — LSB Visualization Report      ║'));
         console.log(chalk.cyan('╚══════════════════════════════════════════════════╝\n'));

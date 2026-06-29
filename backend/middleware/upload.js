@@ -1,8 +1,3 @@
-/**
- * @file upload.js
- * @description Multer middleware configuration for handling image uploads.
- *   Accepts PNG, JPG, JPEG, BMP, TIFF up to 50 MB per file.
- */
 
 'use strict';
 
@@ -18,14 +13,10 @@ const ALLOWED_MIMES = new Set([
   'image/webp',
 ]);
 
-const MAX_FILE_SIZE = Infinity; // no limit — engine handles capacity automatically
+const MAX_FILE_SIZE = Infinity;
 
-/** Store uploads in memory (Buffer) — no disk I/O needed. */
 const storage = multer.memoryStorage();
 
-/**
- * File filter — reject non-image uploads early.
- */
 function fileFilter(_req, file, cb) {
   if (ALLOWED_MIMES.has(file.mimetype)) {
     cb(null, true);

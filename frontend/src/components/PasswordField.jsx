@@ -20,17 +20,6 @@ const IconShield = () => (
   </svg>
 );
 
-/**
- * PasswordField — matches the reference "Encryption Parameters" card.
- * Props:
- *   value      — string
- *   onChange   — (value) => void
- *   label      — outer label text
- *   placeholder
- *   hint       — helper text below input
- *   showHeader — bool — shows the shield + "Encryption Parameters" card header
- *   disabled
- */
 export default function PasswordField({
   value,
   onChange,
@@ -69,7 +58,7 @@ export default function PasswordField({
       )}
 
       <div style={{ padding: '16px 18px' }}>
-        {/* Label row */}
+        {}
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -97,7 +86,7 @@ export default function PasswordField({
           </span>
         </div>
 
-        {/* Input row */}
+        {}
         <div style={{ position: 'relative', marginBottom: 8 }}>
           <input
             type={show ? 'text' : 'password'}
@@ -146,7 +135,7 @@ export default function PasswordField({
           </button>
         </div>
 
-        {/* Hint */}
+        {}
         {hint && (
           <p style={{
             fontSize: 12,

@@ -1,9 +1,4 @@
-/**
- * @file encodeTextController.js
- * POST /api/encode/text
- * Fields: carrier (file), text (string), password? (string)
- * Response: binary PNG stream with metadata in headers
- */
+
 'use strict';
 
 const engine = require('../steganography/engine');
@@ -23,7 +18,6 @@ async function encodeTextController(req, res, next) {
 
     const buf = await engine.encodeText(file.buffer, text, { password });
 
-    // Stream binary PNG — no base64 wrapping, no JSON bloat
     res.set({
       'Content-Type':        'image/png',
       'Content-Length':      buf.length,

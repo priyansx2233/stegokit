@@ -1,7 +1,4 @@
-/**
- * @file server.js
- * @description StegoKit Express server entry point.
- */
+
 'use strict';
 
 const express      = require('express');
@@ -25,21 +22,19 @@ const allowedOrigins = [
   'http://127.0.0.1:5175',
   'https://codeaurelius0.github.io',
   'https://codeaurelius0.github.io/stegokit',
-  // Vercel deployments
+
   'https://stegokit.vercel.app',
 ].filter(Boolean);
 
-// Also allow any *.vercel.app preview URL and anything in CORS_ORIGIN
 function isOriginAllowed(origin) {
-  if (!origin) return true; // server-to-server / curl
+  if (!origin) return true;
   if (allowedOrigins.includes(origin)) return true;
-  // Allow all Vercel preview deployments
+
   if (/^https:\/\/stegokit[a-z0-9-]*\.vercel\.app$/.test(origin)) return true;
   return false;
 }
 const frontendDist = path.resolve(__dirname, '../frontend/dist');
 
-// ── Middleware ────────────────────────────────────────────
 app.use(cors({
   origin: (origin, callback) => {
     if (isOriginAllowed(origin)) {
@@ -52,13 +47,12 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: false,
 }));
-// Ensure OPTIONS preflight is handled for all routes
+
 app.options('*', cors());
 
 app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({ extended: true, limit: '500mb' }));
 
-// ── Routes ────────────────────────────────────────────────
 app.use('/api', routes);
 
 app.get('/', (req, res) => {
@@ -77,15 +71,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// 404 handler
 app.use((_req, res) => {
   res.status(404).json({ success: false, error: 'Route not found.' });
 });
 
-// ── Global Error Handler ──────────────────────────────────
 app.use(errorHandler);
 
-// ── Start ─────────────────────────────────────────────────
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`\nStegoKit API running at http://localhost:${PORT}/api`);
@@ -93,4 +84,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = app; // exported for testing
+module.exports = app;

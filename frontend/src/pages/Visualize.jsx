@@ -5,7 +5,6 @@ import DropZone      from '../components/DropZone';
 import ErrorAlert    from '../components/ErrorAlert';
 import Spinner       from '../components/Spinner';
 
-/* ─── Icons ─────────────────────────────────────────────────── */
 const IconExport = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -29,7 +28,6 @@ const IconSwap = () => (
   </svg>
 );
 
-/* ─── Mini LSB Bit Matrix ────────────────────────────────────── */
 function BitMatrix({ data, modified }) {
   const COLS = 12;
   const rows = Math.min(8, Math.ceil((data?.length || 48) / COLS));
@@ -59,7 +57,6 @@ function BitMatrix({ data, modified }) {
   );
 }
 
-/* ─── Pixel Row (from API) ───────────────────────────────────── */
 function PixelRow({ sample }) {
   const { x, y, pixelIndex, original, encoded, changedBits } = sample;
   return (
@@ -126,7 +123,6 @@ function PixelRow({ sample }) {
   );
 }
 
-/* ─── Inspection Log Entry ───────────────────────────────────── */
 const LOG_ENTRIES = [
   { time: '[14:02:11]', msg: 'System initialized. Loading target files...' },
   { time: '[14:02:12]', msg: 'Original loaded: CARRIER_ORIGINAL.PNG (2.4MB, 1920x1080)' },
@@ -162,7 +158,7 @@ export default function Visualize() {
 
   return (
     <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 24px' }}>
-      {/* ─── Page header ── */}
+      {}
       <div className="fade-up" style={{ marginBottom: 36 }}>
         <div style={{
           display: 'flex',
@@ -172,7 +168,7 @@ export default function Visualize() {
           flexWrap: 'wrap',
         }}>
           <div>
-            {/* Active label */}
+            {}
             <div style={{
               display: 'flex',
               alignItems: 'center',
@@ -218,7 +214,7 @@ export default function Visualize() {
             </p>
           </div>
 
-          {/* Action buttons */}
+          {}
           <div style={{ display: 'flex', gap: 10, flexShrink: 0 }}>
             <button className="btn-outline" style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <IconExport /> Export Diff
@@ -251,7 +247,7 @@ export default function Visualize() {
         </div>
       </div>
 
-      {/* ─── Controls bar ── */}
+      {}
       <div style={{
         background: 'var(--bg-card)',
         border: '1px solid rgba(255,255,255,0.08)',
@@ -263,7 +259,7 @@ export default function Visualize() {
         gap: 32,
         flexWrap: 'wrap',
       }}>
-        {/* Channel Selection */}
+        {}
         <div>
           <div style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -288,7 +284,7 @@ export default function Visualize() {
           </div>
         </div>
 
-        {/* Bit Plane slider */}
+        {}
         <div style={{ flex: 1, minWidth: 160 }}>
           <div style={{
             display: 'flex',
@@ -321,7 +317,7 @@ export default function Visualize() {
           />
         </div>
 
-        {/* View Mode icons */}
+        {}
         <div>
           <div style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -335,11 +331,11 @@ export default function Visualize() {
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
             {[
-              /* split view */
+
               <svg key="split" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>,
-              /* overlay */
+
               <svg key="overlay" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
-              /* grid */
+
               <svg key="grid" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>,
             ].map((icon, i) => (
               <button key={i} style={{
@@ -359,7 +355,7 @@ export default function Visualize() {
         </div>
       </div>
 
-      {/* ─── Image comparison panels ── */}
+      {}
       <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
@@ -367,7 +363,7 @@ export default function Visualize() {
         marginBottom: 20,
         position: 'relative',
       }}>
-        {/* Original */}
+        {}
         <div style={{
           background: 'var(--bg-card)',
           border: '1px solid rgba(255,255,255,0.08)',
@@ -410,7 +406,7 @@ export default function Visualize() {
             )}
           </div>
 
-          {/* LSB Matrix label */}
+          {}
           <div style={{ padding: '10px 14px 2px', display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'rgba(255,255,255,0.25)', letterSpacing: '0.06em' }}>LSB BIT MATRIX (SECTOR 0x0A4)</span>
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'rgba(255,255,255,0.25)' }}>Offset: 4096px</span>
@@ -418,7 +414,7 @@ export default function Visualize() {
           <div style={{ padding: '0 14px 10px' }}>
             <BitMatrix modified={false} />
           </div>
-          {/* Legend */}
+          {}
           <div style={{ display: 'flex', gap: 16, padding: '0 14px 12px', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <div style={{ width: 10, height: 10, borderRadius: 2, background: '#2a2a2a' }} />
@@ -431,7 +427,7 @@ export default function Visualize() {
           </div>
         </div>
 
-        {/* Swap button */}
+        {}
         <div style={{
           position: 'absolute',
           left: '50%',
@@ -450,7 +446,7 @@ export default function Visualize() {
           <IconSwap />
         </div>
 
-        {/* Encoded */}
+        {}
         <div style={{
           background: 'var(--bg-card)',
           border: '1px solid rgba(255,255,255,0.08)',
@@ -492,7 +488,7 @@ export default function Visualize() {
             )}
           </div>
 
-          {/* LSB Matrix label */}
+          {}
           <div style={{ padding: '10px 14px 2px', display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'rgba(255,255,255,0.25)', letterSpacing: '0.06em' }}>LSB BIT MATRIX (SECTOR 0x0A4)</span>
             {report && <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, color: 'var(--accent)' }}>
@@ -502,7 +498,7 @@ export default function Visualize() {
           <div style={{ padding: '0 14px 10px' }}>
             <BitMatrix modified={true} />
           </div>
-          {/* Legend */}
+          {}
           <div style={{ display: 'flex', gap: 16, padding: '0 14px 12px', borderTop: '1px solid rgba(255,255,255,0.04)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <span style={{ fontFamily: 'monospace', fontSize: 11, color: 'rgba(255,255,255,0.25)' }}>Bit Value</span>
@@ -515,7 +511,7 @@ export default function Visualize() {
         </div>
       </div>
 
-      {/* ─── Upload dropzones (if no images yet) ── */}
+      {}
       {!carrier.file || !encoded.file ? (
         <div style={{
           display: 'grid',
@@ -548,7 +544,7 @@ export default function Visualize() {
 
       <ErrorAlert error={error} onDismiss={() => setError(null)} />
 
-      {/* ─── Inspection Log ── */}
+      {}
       <div style={{
         background: 'var(--bg-card)',
         border: '1px solid rgba(255,255,255,0.08)',
@@ -583,7 +579,7 @@ export default function Visualize() {
         </div>
       </div>
 
-      {/* ─── API results summary ── */}
+      {}
       {report && (
         <div className="fade-up" style={{
           display: 'grid',

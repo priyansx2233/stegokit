@@ -1,15 +1,10 @@
-/**
- * @file tests/api.test.js
- * @description Integration tests for the StegoKit REST API endpoints.
- *   Uses supertest to exercise all routes end-to-end.
- */
+
 'use strict';
 
 const request = require('supertest');
 const Jimp    = require('jimp');
 const app     = require('../backend/server');
 
-// ── Helper: generate test PNG buffer ─────────────────────────────────────────
 async function makeTestPng(width, height, color = 0x4488ccff) {
   const img = new Jimp(width, height, color);
   return img.getBufferAsync('image/png');
@@ -28,8 +23,6 @@ function expectPngResponse(res) {
   expect(res.body).toBeInstanceOf(Buffer);
   expect(res.body.slice(0, 8).toString('hex')).toBe('89504e470d0a1a0a');
 }
-
-// ── Tests ─────────────────────────────────────────────────────────────────────
 
 describe('GET /api/health', () => {
   test('returns 200 with service info', async () => {
@@ -63,7 +56,6 @@ describe('POST /api/encode/text + POST /api/decode/text', () => {
   test('encode → decode round-trip via API', async () => {
     const text = 'StegoKit API test 🔐';
 
-    // Encode
     const encRes = await request(app)
       .post('/api/encode/text')
       .attach('carrier', carrierBuf, { filename: 'c.png', contentType: 'image/png' })
@@ -72,7 +64,6 @@ describe('POST /api/encode/text + POST /api/decode/text', () => {
       .parse(parseBinary);
     expectPngResponse(encRes);
 
-    // Decode
     const decRes = await request(app)
       .post('/api/decode/text')
       .attach('encoded', encRes.body, { filename: 'enc.png', contentType: 'image/png' });
